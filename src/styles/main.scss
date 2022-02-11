@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "./colors.scss";
+@import "./fonts.scss";
+
+@layer base {
+  html {
+    font-size: 16px;
+    font-family: "Inter", sans-serif;
+    max-height: -webkit-fill-available;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  span,
+  label {
+    color: var(--color-text-dark);
+  }
+
+  button span {
+    color: unset;
+  }
+
+  input {
+    font-family: "Inter", sans-serif;
+  }
+  input::placeholder {
+    font-family: "Inter", sans-serif;
+  }
+}
