@@ -43,7 +43,7 @@ export const Button = (props: Props) => {
   const btnCls = classNames[variant || "contained"][color || "secondary"];
   const btnHeight = freeHeight ? "h-auto" : "h-[48px]";
   const btnWidth = fullWidth ? "w-full" : "w-unset";
-  const btnCommon = "px-2.5 transition-all brightness-100 hover:brightness-90";
+  const btnCommon = "px-2.5 transition-all brightness-100 hover:brightness-90 text-sm";
   const btnRadius = (() => {
     switch (corner) {
       case "normal":
