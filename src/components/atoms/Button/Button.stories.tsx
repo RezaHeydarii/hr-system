@@ -15,3 +15,11 @@ export const NormalButton = Template.bind({});
 NormalButton.args = {
   children: <span>Click Me</span>,
 };
+
+export const LinkButton = Template.bind({});
+LinkButton.args = {
+  children: <span className='underline'>Click Me</span>,
+  freeHeight: true,
+  color: "default",
+  variant: "text"
+};
