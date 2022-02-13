@@ -1,5 +1,6 @@
 const path = require("path");
 const CracoAlias = require("craco-alias");
+const { POSTCSS_MODES } = require("@craco/craco");
 
 module.exports = {
   webpack: {
@@ -33,5 +34,10 @@ module.exports = {
         tsConfigPath: "./tsconfig.paths.json",
       },
     },
-  ]
+  ],
+  style: {
+    postcss: {
+      mode: POSTCSS_MODES.file,
+    },
+  },
 };

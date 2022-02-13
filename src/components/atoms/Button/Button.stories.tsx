@@ -18,8 +18,8 @@ NormalButton.args = {
 
 export const LinkButton = Template.bind({});
 LinkButton.args = {
-  children: <span className='underline'>Click Me</span>,
+  children: <span className="underline">Click Me</span>,
   freeHeight: true,
-  color: "default",
-  variant: "text"
+  color: "inherit",
+  variant: "text",
 };
