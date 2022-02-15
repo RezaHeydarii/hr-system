@@ -12,7 +12,7 @@ export const MainTheme = createTheme({
       main: "#efec10",
     },
     success: {
-      main: "#10ef7c",
+      main: "#249e2c",
     },
   },
 });

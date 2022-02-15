@@ -12,4 +12,15 @@ const Template: Story<ComponentProps<typeof TextInput>> = (args) => (
 );
 
 export const NormalTextInput = Template.bind({});
-NormalTextInput.args = {};
+NormalTextInput.args = {
+  placeholder: "Please enter  your name",
+  label: "Input Label",
+};
+
+export const ErrorTextInput = Template.bind({});
+ErrorTextInput.args = {
+  placeholder: "Please enter  your name",
+  label: "Input Label",
+  error: true,
+  helperText: "invalid input",
+};

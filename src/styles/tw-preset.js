@@ -4,6 +4,10 @@ module.exports = {
       borderRadius: {
         "24px": "24px",
       },
+      boxShadow: {
+        input:
+          "-3px 3px 0px #DBE8FB, -3px -3px 0px #DBE8FB, 3px -3px 0px #DBE8FB, 3px 3px 0px #DBE8FB, 3px 3px 0px #DBE8FB",
+      },
     },
     colors: {
       i: "var(--color-i)",
@@ -19,6 +23,10 @@ module.exports = {
         4: "var(--color-grey-4)",
         5: "var(--color-grey-5)",
         6: "var(--color-grey-6)",
+      },
+      system: {
+        error: "var(--color-system-error)",
+        success: "var(--color-system-success)",
       },
     },
   },
