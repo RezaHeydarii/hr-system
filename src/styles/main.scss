@@ -33,4 +33,7 @@
   input::placeholder {
     font-family: "Inter", sans-serif;
   }
+  input:focus-visible {
+    outline: none;
+  }
 }

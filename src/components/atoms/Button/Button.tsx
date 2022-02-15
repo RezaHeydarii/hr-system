@@ -16,6 +16,7 @@ export interface ButtonProps
   corner?: "rounded" | "normal" | "not_rounded";
   freeHeight?: boolean;
   isLoading?: boolean;
+  noPadding?: boolean;
 }
 
 export const Button = (props: ButtonProps) => {
@@ -30,6 +31,7 @@ export const Button = (props: ButtonProps) => {
     fullWidth,
     disabled,
     isLoading,
+    noPadding,
   } = props;
   const btnHeight = freeHeight ? "!h-auto" : "!h-[48px]";
   const btnCommon = "!text-sm";
@@ -52,7 +54,7 @@ export const Button = (props: ButtonProps) => {
         color={color}
         variant={variant}
         classes={{
-          root: cls(btnHeight, btnCommon, btnRadius),
+          root: cls(btnHeight, btnCommon, btnRadius, { "!p-0 !min-w-[auto]": noPadding }),
         }}
         disabled={disabled || isLoading}
       >
