@@ -9,6 +9,21 @@ module.exports = {
         input:
           "-3px 3px 0px #DBE8FB, -3px -3px 0px #DBE8FB, 3px -3px 0px #DBE8FB, 3px 3px 0px #DBE8FB, 3px 3px 0px #DBE8FB",
       },
+      animation: {
+        "scale-in": "scale-in 100ms linear forwards",
+        "fade-in": "fade-in 200ms linear forwards",
+      },
+      keyframes: {
+        "scale-in": {
+          "0%": { transform: "scale(0)" },
+          "60%": { transform: "scale(1.3)" },
+          "100%": { transform: "scale(1)" },
+        },
+        "fade-in": {
+          "0%": { transform: "translateY(10px)", opacity: 0 },
+          "100%": { transform: "translateY(0)", opacity: 1 },
+        },
+      },
     },
     colors: {
       i: "var(--color-i)",

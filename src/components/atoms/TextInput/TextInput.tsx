@@ -41,14 +41,14 @@ export const TextInput = (props: TextInputProps) => {
           className="h-full w-full rounded-md px-6 text-base text-text-dark placeholder:text-greys-4 hover:outline-none focus-visible:outline-none hover:border-0"
         />
         {checked && (
-          <Icon name="check_circle" className="mr-4 text-system-success" />
+          <Icon name="check_circle" className="mr-4 text-system-success animate-scale-in" />
         )}
       </div>
       {helperText && (
         <FormHelperText
           helperText={helperText}
           error={error}
-          className="mt-2.5"
+          className="mt-2.5 animate-fade-in"
         />
       )}
     </div>

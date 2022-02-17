@@ -3,15 +3,18 @@ import "./styles/main.scss";
 import { AppContainer } from "./AppContainer";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <AppContainer />
-      <ReactQueryDevtools />
-    </QueryClientProvider>
+    <Router>
+      <QueryClientProvider client={queryClient}>
+        <AppContainer />
+        <ReactQueryDevtools />
+      </QueryClientProvider>
+    </Router>
   );
 }
 

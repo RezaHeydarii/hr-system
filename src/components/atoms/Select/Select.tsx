@@ -108,7 +108,7 @@ export function Select(props: SelectProps) {
         <FormHelperText
           helperText={helperText}
           error={error}
-          className="mt-2.5"
+          className="mt-2.5 animate-fade-in"
         />
       )}
     </div>
