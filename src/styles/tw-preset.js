@@ -5,6 +5,7 @@ module.exports = {
         "24px": "24px",
       },
       boxShadow: {
+        select: "0px 4px 8px rgba(1, 4, 20, 0.04)",
         input:
           "-3px 3px 0px #DBE8FB, -3px -3px 0px #DBE8FB, 3px -3px 0px #DBE8FB, 3px 3px 0px #DBE8FB, 3px 3px 0px #DBE8FB",
       },

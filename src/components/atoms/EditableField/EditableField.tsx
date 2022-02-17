@@ -58,7 +58,7 @@ export function EditableField<ValueType = string>(props: Props<ValueType>) {
             value={innerValue}
             onChange={(e) => setInnerValue(e.target.value as any)}
             className="underline min-w-[18px]"
-            style={{ width: `${(innerValue?.length || 1) * 9}px` }}
+            style={{ width: `${(innerValue?.length || 1) * 11}px` }}
           />
         )}
         <Button

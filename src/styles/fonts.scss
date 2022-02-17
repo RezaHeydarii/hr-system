@@ -2,12 +2,12 @@
 
 //Icomoon:
 @font-face {
-  font-family: 'icomoon';
-  src:  url('./fonts/icomoon.eot?gn7ph2');
-  src:  url('./fonts/icomoon.eot?gn7ph2#iefix') format('embedded-opentype'),
-    url('./fonts/icomoon.ttf?gn7ph2') format('truetype'),
-    url('./fonts/icomoon.woff?gn7ph2') format('woff'),
-    url('./fonts/icomoon.svg?gn7ph2#icomoon') format('svg');
+  font-family: "icomoon";
+  src: url("./fonts/icomoon.eot?6qvqb2");
+  src: url("./fonts/icomoon.eot?6qvqb2#iefix") format("embedded-opentype"),
+    url("./fonts/icomoon.ttf?6qvqb2") format("truetype"),
+    url("./fonts/icomoon.woff?6qvqb2") format("woff"),
+    url("./fonts/icomoon.svg?6qvqb2#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -15,7 +15,7 @@
 
 i {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
+  font-family: "icomoon" !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -31,6 +31,9 @@ i {
 .icon-close:before {
   content: "\e904";
 }
+.icon-empty_box:before {
+  content: "\e905";
+}
 .icon-edit:before {
   content: "\e900";
 }
@@ -42,4 +45,7 @@ i {
 }
 .icon-warning_circle:before {
   content: "\e903";
+}
+.icon-check:before {
+  content: "\e90b";
 }

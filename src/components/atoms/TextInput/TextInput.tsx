@@ -1,6 +1,7 @@
 import React, { InputHTMLAttributes } from "react";
 import cls from "classnames";
 import { Icon } from "..";
+import { FormHelperText } from "../FormHelperText/FormHelperText";
 
 interface TextInputProps
   extends Pick<
@@ -44,14 +45,11 @@ export const TextInput = (props: TextInputProps) => {
         )}
       </div>
       {helperText && (
-        <div className="flex items-center mt-2.5">
-          {error && (
-            <Icon name="warning_circle mr-2.5" className="text-system-error" />
-          )}
-          <span className={cls("text-sm", { "text-system-error": error })}>
-            {helperText}
-          </span>
-        </div>
+        <FormHelperText
+          helperText={helperText}
+          error={error}
+          className="mt-2.5"
+        />
       )}
     </div>
   );
