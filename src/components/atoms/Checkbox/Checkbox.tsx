@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import {
   Checkbox as MuiCheckbox,
   FormControlLabel,
@@ -16,7 +16,7 @@ export interface CheckboxProps extends ParentTypes {
   pointerEvents?: any;
 }
 
-export const Checkbox = (props: CheckboxProps) => {
+export const Checkbox = forwardRef<any, CheckboxProps>((props, ref) => {
   const { className, pointerEvents, ...checkboxProps } = props;
 
   const CheckboxComponent = React.useCallback(
@@ -37,10 +37,11 @@ export const Checkbox = (props: CheckboxProps) => {
   return (
     <div className={className}>
       <FormControlLabel
+        ref={ref}
         style={{ pointerEvents }}
         control={<CheckboxComponent />}
         {...checkboxProps}
       />
     </div>
   );
-};
+});

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import {
   MenuItem,
   Select as MuiSelect,
@@ -34,7 +34,7 @@ export interface SelectProps
   label?: string;
 }
 
-export function Select(props: SelectProps) {
+export const Select = forwardRef<any, SelectProps>((props, ref) => {
   const { className, options, label, ...selectProps } = props;
   const { multiple, value, error, helperText, placeholder } = selectProps;
 
@@ -58,6 +58,7 @@ export function Select(props: SelectProps) {
     <div className={className}>
       {label && <label className="font-bold text-sm mb-2">{label}</label>}
       <MuiSelect<string | string[]>
+        ref={ref}
         {...selectProps}
         classes={{
           outlined: cls(
@@ -113,4 +114,4 @@ export function Select(props: SelectProps) {
       )}
     </div>
   );
-}
+});

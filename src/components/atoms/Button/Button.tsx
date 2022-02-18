@@ -9,7 +9,7 @@ import {
 export interface ButtonProps
   extends Pick<
     MuiButtonProps,
-    "color" | "variant" | "children" | "fullWidth" | "disabled"
+    "color" | "variant" | "children" | "fullWidth" | "disabled" | "type"
   > {
   className?: string;
   onClick?: (e: any) => void;
@@ -32,6 +32,7 @@ export const Button = (props: ButtonProps) => {
     disabled,
     isLoading,
     noPadding,
+    type,
   } = props;
   const btnHeight = freeHeight ? "!h-auto" : "!h-[48px]";
   const btnCommon = "!text-sm";
@@ -49,12 +50,15 @@ export const Button = (props: ButtonProps) => {
   return (
     <div className={className}>
       <MuiButton
+        type={type}
         fullWidth={fullWidth}
         onClick={onClick}
         color={color}
         variant={variant}
         classes={{
-          root: cls(btnHeight, btnCommon, btnRadius, { "!p-0 !min-w-[auto]": noPadding }),
+          root: cls(btnHeight, btnCommon, btnRadius, {
+            "!p-0 !min-w-[auto]": noPadding,
+          }),
         }}
         disabled={disabled || isLoading}
       >

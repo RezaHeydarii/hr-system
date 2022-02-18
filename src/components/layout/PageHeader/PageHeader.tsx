@@ -9,7 +9,7 @@ export const PageHeader = (props: Props) => {
   const { title, text } = props;
   return (
     <div>
-      <div className="px-24 py-6 flex items-center">
+      <div className="px-2.5 sm:px-24 py-6 flex items-center">
         <h2 className="text-iv text-2xl font-black mr-20">{title}</h2>
         <h3 className="font-bold">{text}</h3>
       </div>

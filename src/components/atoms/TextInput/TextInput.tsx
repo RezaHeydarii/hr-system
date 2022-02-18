@@ -1,9 +1,9 @@
-import React, { InputHTMLAttributes } from "react";
+import React, { InputHTMLAttributes, forwardRef } from "react";
 import cls from "classnames";
 import { Icon } from "..";
 import { FormHelperText } from "../FormHelperText/FormHelperText";
 
-interface TextInputProps
+export interface TextInputProps
   extends Pick<
     InputHTMLAttributes<HTMLInputElement>,
     | "value"
@@ -16,6 +16,7 @@ interface TextInputProps
     | "defaultValue"
     | "onBlur"
     | "onFocus"
+    | "type"
   > {
   className?: string;
   label?: string;
@@ -24,7 +25,7 @@ interface TextInputProps
   helperText?: string;
 }
 
-export const TextInput = (props: TextInputProps) => {
+export const TextInput = forwardRef<any, TextInputProps>((props, ref) => {
   const { className, label, checked, error, helperText, ...inputProps } = props;
   return (
     <div className={className}>
@@ -37,11 +38,15 @@ export const TextInput = (props: TextInputProps) => {
         )}
       >
         <input
+          ref={ref}
           {...inputProps}
           className="h-full w-full rounded-md px-6 text-base text-text-dark placeholder:text-greys-4 hover:outline-none focus-visible:outline-none hover:border-0"
         />
         {checked && (
-          <Icon name="check_circle" className="mr-4 text-system-success animate-scale-in" />
+          <Icon
+            name="check_circle"
+            className="mr-4 text-system-success animate-scale-in"
+          />
         )}
       </div>
       {helperText && (
@@ -53,4 +58,4 @@ export const TextInput = (props: TextInputProps) => {
       )}
     </div>
   );
-};
+});
