@@ -5,9 +5,11 @@ import {
 } from "@components/atoms";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { LoginFormProps } from "./types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useLogin, LoginFormProps } from "@hooks/queries";
+import { ACCESS_TOKEN_KEY } from "@constants/settings";
+import { useAuthState } from "@hooks/zustand";
 
 const validationSchema = yup.object().shape({
   username: yup
@@ -21,6 +23,8 @@ const validationSchema = yup.object().shape({
 });
 
 const Login = () => {
+  const setAuth = useAuthState((state) => state.setAuth);
+  const setProfile = useAuthState((state) => state.setProfile);
   const { control, handleSubmit } = useForm<LoginFormProps>({
     resolver: yupResolver(validationSchema),
     defaultValues: {
@@ -30,8 +34,19 @@ const Login = () => {
     },
   });
 
+  const [loginUser, { isLoading }] = useLogin();
+
   const onLogin = (data: LoginFormProps) => {
-    console.log(data);
+    loginUser(data, {
+      onSuccess: (data) => {
+        localStorage.setItem(ACCESS_TOKEN_KEY, data.data.token);
+        setProfile(data.data);
+        setAuth(true);
+      },
+      onError: () => {
+        setAuth(false);
+      },
+    });
   };
 
   return (
@@ -68,7 +83,13 @@ const Login = () => {
           id="rememberMe"
           control={control}
         />
-        <Button type="submit" color="secondary" fullWidth className="mt-5">
+        <Button
+          isLoading={isLoading}
+          type="submit"
+          color="secondary"
+          fullWidth
+          className="mt-5"
+        >
           Login
         </Button>
       </form>
