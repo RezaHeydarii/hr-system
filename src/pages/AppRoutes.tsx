@@ -9,6 +9,9 @@ const LoginPage = lazy(() => import("./Login/Login"));
 const CandidatesListPage = lazy(
   () => import("./CandidatesList/CandidatesList")
 );
+const CandidatesDetailsPage = lazy(
+  () => import("./CandidateDetails/CandidateDetails")
+);
 
 const AuthPages = () => {
   return (
@@ -29,6 +32,7 @@ const AppPages = () => {
   return (
     <Routes>
       <Route path="/" element={<CandidatesListPage />} />
+      <Route path="/:id" element={<CandidatesDetailsPage />} />
     </Routes>
   );
 };
