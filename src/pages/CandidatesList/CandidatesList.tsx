@@ -1,23 +1,22 @@
 import { useCandidateList } from "@hooks/queries";
 import { CircularProgress } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { CandidateTable } from "./components";
 
 export const CandidatesList = () => {
   const [candidateList, { isLoading }] = useCandidateList();
+  const navigate = useNavigate();
 
   return (
     <div>
       {!isLoading && (
         <div>
-          {candidateList &&
-            candidateList.map((c) => {
-              return (
-                <div>
-                  <Link to={`/${c.id}`}>{c.name}</Link>
-                </div>
-              );
-            })}
+          <CandidateTable
+            rows={candidateList}
+            className="w-full h-[85vh] mt-4 animate-fade-in"
+            onRowClick={(row) => navigate(`/${row.id}`)}
+          />
         </div>
       )}
       {isLoading && (

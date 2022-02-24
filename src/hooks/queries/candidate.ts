@@ -1,35 +1,5 @@
 import axios from "axios";
-import { useQuery } from "react-query";
-
-export interface CandidateType {
-  id: number;
-  name: string;
-  email: string;
-  phone: string;
-  seniority: string;
-  minSalary: number;
-  maxSalary: number;
-  skills: string[];
-  experienceYears: number;
-  cv?: string;
-  status:
-    | "Initial"
-    | "First"
-    | "Contact"
-    | "Interview"
-    | "Tech"
-    | "Assignment"
-    | "Rejected"
-    | "Hired";
-}
-
-export interface CandidateLogType {
-  user: string;
-  candidateId: string;
-  type: "log" | "comment";
-  text: string;
-  date: string;
-}
+import { useMutation, useQuery } from "react-query";
 
 export const CANDIDATE_QK = "/api/candidate";
 export const CANDIDATE_LOG_QK = "/api/candidate/logs";
@@ -78,4 +48,20 @@ export const useCandidateLogs = (id?: string) => {
   );
 
   return [data || [], { isLoading, isError }] as const;
+};
+
+interface PatchFnProps {
+  id: string;
+  change: Partial<Omit<CandidateType, "id">>;
+}
+
+export const usePatchCandidate = () => {
+  const requestFn = async ({ id, change }: PatchFnProps) => {
+    const data = await axios.patch(`${CANDIDATE_QK}/${id}`, change);
+    return data;
+  };
+
+  const { mutate, isLoading, isError } = useMutation(requestFn);
+
+  return [mutate, { isLoading, isError }] as const;
 };

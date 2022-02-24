@@ -26,6 +26,7 @@ module.exports = {
       },
     },
     colors: {
+      transparent: "transparent",
       i: "var(--color-i)",
       ii: "var(--color-ii)",
       iii: "var(--color-iii)",

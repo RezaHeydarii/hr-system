@@ -33,7 +33,7 @@
     "skills": ["Java", "Kotlin"],
     "experienceYears": 1,
     "cv": "",
-    "status": "FirstContact"
+    "status": "First"
 }, {
     "id": 4,
     "name": "Zahra Heydari",
@@ -69,7 +69,7 @@
     "skills": ["Rust"],
     "experienceYears": 1,
     "cv": "",
-    "status": "FirstContact"
+    "status": "First"
 }, {
     "id": 7,
     "name": "Sahar Torabi",
