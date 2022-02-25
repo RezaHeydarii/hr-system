@@ -26,7 +26,7 @@ export const CandidateLogSection = (props: Props) => {
       </div>
       {logs.map((log) => {
         return (
-          <div className="mb-5">
+          <div className="mb-5 animate-fade-in">
             <LogFactory
               userName={log.user === userName ? "You" : log.user}
               log={log}

@@ -50,13 +50,13 @@ export const useCandidateLogs = (id?: string) => {
   return [data || [], { isLoading, isError }] as const;
 };
 
-interface PatchFnProps {
+export interface CandidatePatchFnProps {
   id: string;
   change: Partial<Omit<CandidateType, "id">>;
 }
 
 export const usePatchCandidate = () => {
-  const requestFn = async ({ id, change }: PatchFnProps) => {
+  const requestFn = async ({ id, change }: CandidatePatchFnProps) => {
     const data = await axios.patch(`${CANDIDATE_QK}/${id}`, change);
     return data;
   };

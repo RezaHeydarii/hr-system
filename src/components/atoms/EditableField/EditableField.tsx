@@ -89,7 +89,7 @@ export function EditableField<ValueType = string>(props: Props<ValueType>) {
           variant="text"
           freeHeight
           className="ml-1"
-          onClick={_onSaveValue}
+          onClick={() => _onSaveValue(innerValue)}
         >
           <Icon name="check_circle" className="text-text-dark text-xl" />
         </Button>

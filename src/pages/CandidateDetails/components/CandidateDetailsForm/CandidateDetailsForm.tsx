@@ -1,31 +1,49 @@
 import { EditableField, Select, TextInput } from "@components/atoms";
 import { Chip } from "@components/atoms/Chip/Chip";
+import { CandidatePatchFnProps } from "@hooks/queries";
 import React from "react";
 import { SeniorityOptions } from "./data";
+import NumberFormat from "react-number-format";
 
 interface Props {
   candidateDetails: CandidateType;
   className?: string;
+  onPatchCandidate: (data: CandidatePatchFnProps["change"]) => void;
+  isLoading?: boolean;
 }
 
 export const CandidateDetailsForm = (props: Props) => {
-  const { candidateDetails, className } = props;
+  const { candidateDetails, className, onPatchCandidate } = props;
   return (
     <div className={className}>
       <EditableField
         value={candidateDetails.name}
         label="Full name"
         className={"mb-5"}
+        onSaveChange={(name) => onPatchCandidate({ name })}
       />
       <EditableField
         value={candidateDetails.email}
         label="Email"
         className={"mb-5"}
+        onSaveChange={(email) => onPatchCandidate({ email })}
       />
       <EditableField
         value={candidateDetails.phone}
         label="Phone number"
         className={"mb-5"}
+        onSaveChange={(phone) =>
+          onPatchCandidate({ phone: phone.replace(" ", "") })
+        }
+        renderEditInput={(val, setValue) => {
+          return (
+            <NumberFormat
+              value={val}
+              format="### ### ### ####"
+              onChange={(e: any) => setValue(e.target.value as any)}
+            />
+          );
+        }}
       />
 
       <EditableField
@@ -47,6 +65,7 @@ export const CandidateDetailsForm = (props: Props) => {
             />
           );
         }}
+        onSaveChange={(skl) => onPatchCandidate({ skills: skl.split(",") })}
       />
 
       <EditableField
@@ -62,12 +81,16 @@ export const CandidateDetailsForm = (props: Props) => {
             />
           );
         }}
+        onSaveChange={(seniority) => onPatchCandidate({ seniority })}
       />
 
       <EditableField
-        value={candidateDetails.experienceYears}
+        value={candidateDetails.experienceYears.toString()}
         label="Years of experience"
         className={"mb-5"}
+        onSaveChange={(experienceYears: any) =>
+          onPatchCandidate({ experienceYears })
+        }
       />
     </div>
   );

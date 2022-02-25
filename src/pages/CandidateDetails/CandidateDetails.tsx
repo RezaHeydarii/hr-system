@@ -1,15 +1,37 @@
 import { StatusSelector } from "@components/candidate";
-import { useCandidate } from "@hooks/queries";
+import {
+  CandidatePatchFnProps,
+  CANDIDATE_QK,
+  useCandidate,
+  usePatchCandidate,
+  CANDIDATE_LOG_QK,
+} from "@hooks/queries";
 import { CircularProgress, Grid } from "@mui/material";
 import React from "react";
 import { useParams } from "react-router-dom";
 import moment from "moment";
 import { CandidateDetailsForm, CandidateLogSection } from "./components";
+import { useQueryClient } from "react-query";
 
 export const CandidateDetails = () => {
   const { id } = useParams();
   const [data] = useCandidate(id);
-  //const [logs] = useCandidateLogs(id);
+  const [patch, { isLoading }] = usePatchCandidate();
+  const queryClient = useQueryClient();
+
+  const onPatchCandidate = (change: CandidatePatchFnProps["change"]) => {
+    if (id)
+      patch(
+        { id, change },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries(`${CANDIDATE_QK}/${id}`);
+            queryClient.invalidateQueries(`${CANDIDATE_LOG_QK}/${id}`);
+          },
+        }
+      );
+  };
+
   if (!data) {
     return (
       <div className="flex justify-center py-20">
@@ -28,7 +50,11 @@ export const CandidateDetails = () => {
       <Grid container>
         <Grid item xs={12} sm={6}>
           <div className="flex items-center px-10 h-[72px] border-r border-r-greys-6 border-dashed">
-            <StatusSelector value={data.status} />
+            <StatusSelector
+              value={data.status}
+              onChangeStatus={(status) => onPatchCandidate({ status })}
+              isLoading={isLoading}
+            />
           </div>
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -56,6 +82,8 @@ export const CandidateDetails = () => {
           <CandidateDetailsForm
             candidateDetails={data}
             className="mt-5 mx-10"
+            onPatchCandidate={onPatchCandidate}
+            isLoading={isLoading}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
