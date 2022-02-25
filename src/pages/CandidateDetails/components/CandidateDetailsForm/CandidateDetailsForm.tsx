@@ -1,4 +1,4 @@
-import { EditableField, Select, TextInput } from "@components/atoms";
+import { EditableField, Select } from "@components/atoms";
 import { Chip } from "@components/atoms/Chip/Chip";
 import { CandidatePatchFnProps } from "@hooks/queries";
 import React from "react";
@@ -38,10 +38,58 @@ export const CandidateDetailsForm = (props: Props) => {
         renderEditInput={(val, setValue) => {
           return (
             <NumberFormat
+              className="underline"
               value={val}
               format="### ### ### ####"
               onChange={(e: any) => setValue(e.target.value as any)}
             />
+          );
+        }}
+      />
+
+      <EditableField<number[]>
+        value={[candidateDetails.minSalary, candidateDetails.maxSalary]}
+        label="Salary"
+        className={"mb-5"}
+        onSaveChange={([minSalary, maxSalary]) =>
+          onPatchCandidate({ minSalary: minSalary, maxSalary })
+        }
+        renderValue={(val) => {
+          if (!val) return null;
+          return (
+            <div>
+              <NumberFormat
+                displayType="text"
+                thousandSeparator
+                value={val[0] as number}
+              />
+              <span> - </span>
+              <NumberFormat
+                displayType="text"
+                thousandSeparator
+                value={val[1] as number}
+              />
+            </div>
+          );
+        }}
+        renderEditInput={(val, setVal) => {
+          return (
+            <>
+              <NumberFormat
+                className="underline"
+                thousandSeparator
+                placeholder="Minimum salary"
+                value={val[0]}
+                onChange={(e: any) => setVal([e.target.value as any, val[1]])}
+              />
+              <NumberFormat
+                className="underline"
+                thousandSeparator
+                placeholder="Maximum salary"
+                value={val[1]}
+                onChange={(e: any) => setVal([val[0], e.target.value as any])}
+              />
+            </>
           );
         }}
       />
@@ -55,15 +103,6 @@ export const CandidateDetailsForm = (props: Props) => {
             return val
               .split(",")
               .map((skl) => <Chip key={skl} label={skl} className="mr-1" />);
-        }}
-        renderEditInput={(val, setVal) => {
-          return (
-            <TextInput
-              value={val}
-              onChange={(e) => setVal(e.target.value as any)}
-              helperText="separate with ,"
-            />
-          );
         }}
         onSaveChange={(skl) => onPatchCandidate({ skills: skl.split(",") })}
       />
