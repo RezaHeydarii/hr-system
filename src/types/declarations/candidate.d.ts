@@ -30,4 +30,5 @@ declare interface CandidateLogType {
   type: "log" | "comment";
   text: string;
   date: string;
+  editedField?: string;
 }

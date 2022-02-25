@@ -4,7 +4,7 @@ import { CircularProgress, Grid } from "@mui/material";
 import React from "react";
 import { useParams } from "react-router-dom";
 import moment from "moment";
-import { CandidateDetailsForm } from "./components";
+import { CandidateDetailsForm, CandidateLogSection } from "./components";
 
 export const CandidateDetails = () => {
   const { id } = useParams();
@@ -18,7 +18,7 @@ export const CandidateDetails = () => {
     );
   }
   return (
-    <div className="border border-t-0 border-greys-6 mb-10">
+    <div className="border border-t-0 border-greys-6 pb-64">
       <div className="py-10">
         <h1 className="text-3xl font-bold">Candidate Details</h1>
       </div>
@@ -53,7 +53,16 @@ export const CandidateDetails = () => {
         </Grid>
 
         <Grid item xs={12} sm={6}>
-          <CandidateDetailsForm candidateDetails={data} className='mt-5 mx-10' />
+          <CandidateDetailsForm
+            candidateDetails={data}
+            className="mt-5 mx-10"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <CandidateLogSection
+            candidate={data}
+            className="pt-5 px-10 border-l border-l-greys-6 border-dashed"
+          />
         </Grid>
       </Grid>
     </div>

@@ -8,15 +8,17 @@ const Logger = [
     user: "Reza Heydari",
     candidateId: "1",
     type: "log",
-    text: "changed phone from 09223738410 to 09223738411",
+    text: "0989223738410 to 0989223738411",
+    editedField: "phone",
     date: new Date().toISOString(),
   },
   {
     user: "Reza Heydari",
     candidateId: "2",
     type: "log",
-    text: "changed phone from 09223738410 to 09223738411",
+    text: "0989223738410 to 0989223738411",
     date: new Date().toISOString(),
+    editedField: "phone",
   },
 ];
 
@@ -51,12 +53,13 @@ export const CandidateHandlers = [
             //@ts-ignore
             if (c[key])
               Logger.push({
-                user: "Reza Heydari",
+                user: token.replace("Bearer ", ""),
                 candidateId: id as string,
                 type: "log",
                 //@ts-ignore
-                text: `changed ${key} from ${c[key]} to ${value}`,
+                text: `${c[key]} to ${value}`,
                 date: new Date().toISOString(),
+                editedField: key,
               });
           });
           //@ts-ignore
@@ -89,6 +92,7 @@ export const CandidateHandlers = [
       //@ts-ignore
       text,
       date: new Date().toISOString(),
+      editedField: "comment",
     });
   }),
 ];

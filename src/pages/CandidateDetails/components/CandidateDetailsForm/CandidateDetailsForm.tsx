@@ -1,6 +1,7 @@
-import { EditableField } from "@components/atoms";
+import { EditableField, Select, TextInput } from "@components/atoms";
 import { Chip } from "@components/atoms/Chip/Chip";
 import React from "react";
+import { SeniorityOptions } from "./data";
 
 interface Props {
   candidateDetails: CandidateType;
@@ -27,15 +28,24 @@ export const CandidateDetailsForm = (props: Props) => {
         className={"mb-5"}
       />
 
-      <EditableField<string[]>
-        value={candidateDetails.skills}
+      <EditableField
+        value={candidateDetails.skills.join(",")}
         label="Phone number"
         className={"mb-5"}
         renderValue={(val) => {
           if (val)
-            return val.map((skl) => (
-              <Chip key={skl} label={skl} className="mr-1" />
-            ));
+            return val
+              .split(",")
+              .map((skl) => <Chip key={skl} label={skl} className="mr-1" />);
+        }}
+        renderEditInput={(val, setVal) => {
+          return (
+            <TextInput
+              value={val}
+              onChange={(e) => setVal(e.target.value as any)}
+              helperText="separate with ,"
+            />
+          );
         }}
       />
 
@@ -43,6 +53,15 @@ export const CandidateDetailsForm = (props: Props) => {
         value={candidateDetails.seniority}
         label="Seniority"
         className={"mb-5"}
+        renderEditInput={(val, setVal) => {
+          return (
+            <Select
+              options={SeniorityOptions}
+              value={val}
+              onChange={(e) => setVal(e.target.value as any)}
+            />
+          );
+        }}
       />
 
       <EditableField

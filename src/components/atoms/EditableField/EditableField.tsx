@@ -6,12 +6,23 @@ interface Props<T = string> {
   onSaveChange?: (value: T) => void;
   defaultValue?: T;
   renderValue?: (value?: T) => React.ReactNode;
+  renderEditInput?: (
+    localValue: T,
+    setter: (val: T) => void
+  ) => React.ReactNode;
   label?: string;
 }
 
 export function EditableField<ValueType = string>(props: Props<ValueType>) {
-  const { className, value, onSaveChange, defaultValue, renderValue, label } =
-    props;
+  const {
+    className,
+    value,
+    onSaveChange,
+    defaultValue,
+    renderValue,
+    renderEditInput,
+    label,
+  } = props;
 
   const [innerValue, setInnerValue] =
     React.useState<ValueType | undefined>(defaultValue);
@@ -53,7 +64,7 @@ export function EditableField<ValueType = string>(props: Props<ValueType>) {
   const renderEditMode = () => {
     return (
       <div className="flex items-center">
-        {typeof innerValue === "string" && (
+        {typeof innerValue === "string" && !renderEditInput && (
           <input
             value={innerValue}
             onChange={(e) => setInnerValue(e.target.value as any)}
@@ -61,6 +72,7 @@ export function EditableField<ValueType = string>(props: Props<ValueType>) {
             style={{ width: `${(innerValue?.length || 1) * 11}px` }}
           />
         )}
+        {renderEditInput && renderEditInput(innerValue!, setInnerValue)}
         <Button
           noPadding
           variant="text"
