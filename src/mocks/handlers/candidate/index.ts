@@ -9,14 +9,14 @@ const Logger = [
     candidateId: "1",
     type: "log",
     text: "changed phone from 09223738410 to 09223738411",
-    date: new Date(),
+    date: new Date().toISOString(),
   },
   {
     user: "Reza Heydari",
     candidateId: "2",
     type: "log",
     text: "changed phone from 09223738410 to 09223738411",
-    date: new Date(),
+    date: new Date().toISOString(),
   },
 ];
 
@@ -56,15 +56,18 @@ export const CandidateHandlers = [
                 type: "log",
                 //@ts-ignore
                 text: `changed ${key} from ${c[key]} to ${value}`,
-                date: new Date(),
+                date: new Date().toISOString(),
               });
           });
           //@ts-ignore
-          return { ...c, ...body };
+          return { ...c, ...body, updatedAt: new Date().toISOString() };
         } else return c;
       });
       //@ts-ignore
-      return res(ctx.json({ ...data, ...body }));
+      return res(
+        //@ts-ignore
+        ctx.json({ ...data, ...body, updatedAt: new Date().toISOString() })
+      );
     }
     return res(ctx.status(404));
   }),
@@ -85,7 +88,7 @@ export const CandidateHandlers = [
       type: "comment",
       //@ts-ignore
       text,
-      date: new Date(),
+      date: new Date().toISOString(),
     });
   }),
 ];

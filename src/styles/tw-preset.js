@@ -37,6 +37,7 @@ module.exports = {
         light: "var(--color-text-light)",
       },
       greys: {
+        3: "var(--color-grey-3)",
         4: "var(--color-grey-4)",
         5: "var(--color-grey-5)",
         6: "var(--color-grey-6)",

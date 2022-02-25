@@ -20,6 +20,8 @@ declare interface CandidateType {
   experienceYears: number;
   cv?: string;
   status: CandidateStatus;
+  createdAt: string;
+  updatedAt: string;
 }
 
 declare interface CandidateLogType {

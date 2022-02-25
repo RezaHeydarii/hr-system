@@ -30,7 +30,7 @@ export const StatusSelector = (props: Props) => {
       <Button
         className={cls(
           valueProps?.bgClassName,
-          "rounded-xl flex items-center justify-between"
+          "rounded-xl flex items-center justify-between h-[38px]"
         )}
         variant="text"
         onClick={handleClick}

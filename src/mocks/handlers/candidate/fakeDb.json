@@ -9,7 +9,9 @@
     "skills": ["React", "React Native"],
     "experienceYears": 3,
     "cv": "",
-    "status": "Assignment"
+    "status": "Assignment",
+    "createdAt": "2021-07-02 17:59:17",
+    "updatedAt": "2021-08-02 17:59:17"
 }, {
     "id": 2,
     "name": "Masih Jazayeri",
@@ -21,7 +23,9 @@
     "skills": ["Php", "Go"],
     "experienceYears": 4,
     "cv": "",
-    "status": "Initial"
+    "status": "Initial",
+    "createdAt": "2022-01-14 05:51:07",
+    "updatedAt": "2022-01-14 05:55:07"
 }, {
     "id": 3,
     "name": "Joe Black",
@@ -33,7 +37,9 @@
     "skills": ["Java", "Kotlin"],
     "experienceYears": 1,
     "cv": "",
-    "status": "First"
+    "status": "First",
+    "createdAt": "2021-03-23 07:19:34",
+    "updatedAt": "2021-03-25 07:19:34"
 }, {
     "id": 4,
     "name": "Zahra Heydari",
@@ -45,7 +51,9 @@
     "skills": ["AI", "Python", "Javascript"],
     "experienceYears": 3,
     "cv": "",
-    "status": "Interview"
+    "status": "Interview",
+    "createdAt": "2021-09-17 21:58:23",
+    "updatedAt": "2021-09-17 21:58:23"
 }, {
     "id": 5,
     "name": "Brad Snow",
@@ -57,7 +65,9 @@
     "skills": ["Ios", "Swift"],
     "experienceYears": 4,
     "cv": "",
-    "status": "Hired"
+    "status": "Hired",
+    "createdAt": "2021-04-10 00:12:03",
+    "updatedAt": "2021-04-10 00:12:03"
 }, {
     "id": 6,
     "name": "Sofia Luck",
@@ -69,7 +79,9 @@
     "skills": ["Rust"],
     "experienceYears": 1,
     "cv": "",
-    "status": "First"
+    "status": "First",
+    "createdAt": "2021-05-21 03:25:31",
+    "updatedAt": "2021-05-21 03:28:31"
 }, {
     "id": 7,
     "name": "Sahar Torabi",
@@ -81,7 +93,9 @@
     "skills": ["React", "Docker", "Vuejs"],
     "experienceYears": 2,
     "cv": "",
-    "status": "Rejected"
+    "status": "Rejected",
+    "createdAt": "2021-07-25 01:59:55",
+    "updatedAt": "2021-07-25 02:59:55"
 }, {
     "id": 8,
     "name": "Tod Anderson",
@@ -93,5 +107,7 @@
     "skills": ["Android", "Java", "Kotlin", "Ios", "Swift", "LeaderShip"],
     "experienceYears": 6,
     "cv": "",
-    "status": "Initial"
+    "status": "Initial",
+    "createdAt": "2021-07-08 02:47:22",
+    "updatedAt": "2021-09-08 02:47:22"
 }]
