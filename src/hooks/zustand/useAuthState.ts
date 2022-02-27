@@ -1,3 +1,4 @@
+import { ACCESS_TOKEN_KEY } from "@constants/settings";
 import create from "zustand";
 
 export interface ProfileType {
@@ -14,6 +15,7 @@ interface AuthSateType {
   setProfile: (p?: ProfileType) => void;
   toggleIsAuthenticating: (i: boolean) => void;
   setAuth: (isAuth: boolean) => void;
+  logout: () => void;
 }
 
 export const useAuthState = create<AuthSateType>((set) => ({
@@ -25,4 +27,14 @@ export const useAuthState = create<AuthSateType>((set) => ({
     set((state) => ({ ...state, isAuthenticating: i })),
   setAuth: (isAuth: boolean) =>
     set((state) => ({ ...state, isAuthenticating: false, isAuth })),
+  logout: () =>
+    set((state) => {
+      localStorage.removeItem(ACCESS_TOKEN_KEY);
+      return {
+        ...state,
+        isAuthenticating: false,
+        isAuth: false,
+        profile: undefined,
+      };
+    }),
 }));

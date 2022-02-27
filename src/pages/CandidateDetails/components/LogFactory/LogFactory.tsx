@@ -1,3 +1,4 @@
+import { Avatar } from "@mui/material";
 import moment from "moment";
 import React from "react";
 import { LogField } from "./LogField";
@@ -28,8 +29,18 @@ export const LogFactory = (props: Props) => {
   }, [log, userName]);
 
   const RenderComment = React.useCallback(() => {
-    return <div></div>;
-  }, []);
+    return (
+      <div className="border-b border-b-greys-5 border-dashed pb-5 mb-5">
+        <div className="flex items-center mb-4">
+          <Avatar classes={{ root: "!bg-iii !text-text-dark" }}>
+            {log.user.slice(0, 1)}
+          </Avatar>
+          <p className="text-md  ml-2.5 font-medium">{log.user}</p>
+        </div>
+        <p className="text-md">{log.text}</p>
+      </div>
+    );
+  }, [log.text, log.user]);
 
   switch (log.type) {
     case "log":

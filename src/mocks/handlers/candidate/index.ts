@@ -84,15 +84,18 @@ export const CandidateHandlers = [
     const token = req.headers.get("Authorization");
     if (!token) return res(ctx.status(401));
     const { id } = req.params;
-    const { text } = req.body as any;
-    Logger.push({
+    const { comment } = req.body as any;
+    const newComment = {
       user: "Reza Heydari",
       candidateId: id as string,
       type: "comment",
       //@ts-ignore
-      text,
+      text: comment,
       date: new Date().toISOString(),
       editedField: "comment",
-    });
+    };
+    Logger.push(newComment);
+
+    return res(ctx.json(newComment));
   }),
 ];

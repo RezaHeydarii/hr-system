@@ -3,6 +3,7 @@ import { useMutation, useQuery } from "react-query";
 
 export const CANDIDATE_QK = "/api/candidate";
 export const CANDIDATE_LOG_QK = "/api/candidate/logs";
+export const CANDIDATE_COMMENT_QK = "/api/candidate/comment";
 
 export const useCandidateList = () => {
   const { data, isError, isLoading } = useQuery<CandidateType[]>(
@@ -58,6 +59,25 @@ export interface CandidatePatchFnProps {
 export const usePatchCandidate = () => {
   const requestFn = async ({ id, change }: CandidatePatchFnProps) => {
     const data = await axios.patch(`${CANDIDATE_QK}/${id}`, change);
+    return data;
+  };
+
+  const { mutate, isLoading, isError } = useMutation(requestFn);
+
+  return [mutate, { isLoading, isError }] as const;
+};
+
+export interface CommentFnProps {
+  id: string;
+  comment: CommentPayload;
+}
+
+export const usePostComment = () => {
+  const requestFn = async (payload: CommentFnProps) => {
+    const data = await axios.post(
+      `${CANDIDATE_COMMENT_QK}/${payload.id}`,
+      payload.comment
+    );
     return data;
   };
 
