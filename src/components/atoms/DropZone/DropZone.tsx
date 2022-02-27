@@ -4,19 +4,40 @@ import { Button } from "..";
 
 interface Props {
   className?: string;
-  onChange?: (files: any) => void;
+  onChange?: (files: File) => void;
 }
 
 export const DropZone = (props: Props) => {
   const { className, onChange } = props;
+  const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
   const onDrop = useCallback(
-    (acceptedFiles: any) => {
-      if (onChange) onChange(acceptedFiles);
+    (acceptedFiles: File[]) => {
+      if (onChange && acceptedFiles[0]) {
+        onChange(acceptedFiles[0]);
+        setSelectedFile(acceptedFiles[0]);
+      }
       // Do something with the files
     },
     [onChange]
   );
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
+  if (selectedFile) {
+    return (
+      <div className="bg-greys-6 flex flex-col justify-center items-center py-8 px-4 rounded-lg border border-dashed border-greys-5">
+        <a href={URL.createObjectURL(selectedFile)} className="font-bold">
+          {selectedFile.name}
+        </a>
+        <Button
+          onClick={() => setSelectedFile(null)}
+          variant="text"
+          color="secondary"
+        >
+          Select Another
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <div className={className}>

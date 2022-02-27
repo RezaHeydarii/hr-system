@@ -1,4 +1,4 @@
-import { EditableField, Select } from "@components/atoms";
+import { DropZone, EditableField, Select } from "@components/atoms";
 import { Chip } from "@components/atoms/Chip/Chip";
 import { CandidatePatchFnProps } from "@hooks/queries";
 import React from "react";
@@ -130,6 +130,29 @@ export const CandidateDetailsForm = (props: Props) => {
         onSaveChange={(experienceYears: any) =>
           onPatchCandidate({ experienceYears })
         }
+      />
+
+      <EditableField<string>
+        value={candidateDetails.cv}
+        label="CV"
+        className={"mb-5"}
+        onSaveChange={(cv: any) => onPatchCandidate({ cv })}
+        renderEditInput={(_, setter) => {
+          return (
+            <DropZone
+              onChange={(f) => setter(URL.createObjectURL(f))}
+              className="min-w-[320px] animate-fade-in"
+            />
+          );
+        }}
+        renderValue={(val) => {
+          if (!val) return <p>no file selected</p>;
+          return (
+            <a href={val} target="_blank" rel="noreferrer">
+              open file
+            </a>
+          );
+        }}
       />
     </div>
   );

@@ -7,3 +7,4 @@ export * from "./Checkbox/ControlledCheckbox";
 export * from "./Select/Select";
 export * from "./Select/ControlledSelect";
 export * from "./EditableField/EditableField";
+export * from "./DropZone/DropZone";

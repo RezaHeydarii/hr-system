@@ -72,14 +72,16 @@ export const CandidateLogSection = (props: Props) => {
           control={control}
           name="comment"
           id="comment"
+          placeholder="Type to comment"
           endAdornment={
             <Button
               isLoading={postingComment}
               corner="not_rounded"
               type="submit"
               color="secondary"
+              className="mr-1"
             >
-              Submit
+              Comment
             </Button>
           }
         />
