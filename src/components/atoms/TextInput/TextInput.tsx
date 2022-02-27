@@ -23,10 +23,19 @@ export interface TextInputProps
   checked?: boolean;
   error?: boolean;
   helperText?: string;
+  endAdornment?: React.ReactNode;
 }
 
 export const TextInput = forwardRef<any, TextInputProps>((props, ref) => {
-  const { className, label, checked, error, helperText, ...inputProps } = props;
+  const {
+    className,
+    label,
+    checked,
+    error,
+    helperText,
+    endAdornment,
+    ...inputProps
+  } = props;
   return (
     <div className={className}>
       {label && <label className="font-bold text-sm mb-2">{label}</label>}
@@ -42,12 +51,13 @@ export const TextInput = forwardRef<any, TextInputProps>((props, ref) => {
           {...inputProps}
           className="h-full w-full rounded-md px-6 text-base text-text-dark placeholder:text-greys-4 hover:outline-none focus-visible:outline-none hover:border-0"
         />
-        {checked && (
+        {checked && !endAdornment && (
           <Icon
             name="check_circle"
             className="mr-4 text-system-success animate-scale-in"
           />
         )}
+        {endAdornment && <div>{endAdornment}</div>}
       </div>
       {helperText && (
         <FormHelperText

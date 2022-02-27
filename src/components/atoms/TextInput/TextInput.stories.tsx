@@ -24,3 +24,10 @@ ErrorTextInput.args = {
   error: true,
   helperText: "invalid input",
 };
+
+export const TextInputWithAdornment = Template.bind({});
+TextInputWithAdornment.args = {
+  placeholder: "Please enter  your name",
+  label: "Input Label",
+  endAdornment: <div className='mr-2.5'>Test</div>,
+};
