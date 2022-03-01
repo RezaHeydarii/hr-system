@@ -132,15 +132,25 @@ export const CandidateDetailsForm = (props: Props) => {
         }
       />
 
-      <EditableField<string>
+      <EditableField<CandidateType["cv"]>
         value={candidateDetails.cv}
         label="CV"
         className={"mb-5"}
-        onSaveChange={(cv: any) => onPatchCandidate({ cv })}
+        onSaveChange={(cv) => {
+          if (cv) {
+            onPatchCandidate({ cv });
+          }
+        }}
         renderEditInput={(_, setter) => {
           return (
             <DropZone
-              onChange={(f) => setter(URL.createObjectURL(f))}
+              onChange={(f) =>
+                setter({
+                  link: URL.createObjectURL(f),
+                  name: f.name,
+                  type: f.type,
+                })
+              }
               className="min-w-[320px] animate-fade-in"
             />
           );
@@ -148,8 +158,8 @@ export const CandidateDetailsForm = (props: Props) => {
         renderValue={(val) => {
           if (!val) return <p>no file selected</p>;
           return (
-            <a href={val} target="_blank" rel="noreferrer">
-              open file
+            <a className='border-b-iv border-b-2' href={val.link} target="_blank" rel="noreferrer">
+              {val.name}
             </a>
           );
         }}

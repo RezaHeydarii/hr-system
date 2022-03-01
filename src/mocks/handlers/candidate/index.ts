@@ -29,6 +29,7 @@ export const CandidateHandlers = [
     ctx.delay(3000);
     return res(ctx.json(MyDb));
   }),
+
   rest.get("/api/candidate/:id", (req, res, ctx) => {
     const token = req.headers.get("Authorization");
     if (!token) return res(ctx.status(401));
@@ -40,6 +41,7 @@ export const CandidateHandlers = [
     }
     return res(ctx.status(404));
   }),
+
   rest.patch("/api/candidate/:id", (req, res, ctx) => {
     const token = req.headers.get("Authorization");
     if (!token) return res(ctx.status(401));
@@ -74,12 +76,14 @@ export const CandidateHandlers = [
     }
     return res(ctx.status(404));
   }),
+
   rest.get("/api/candidate/logs/:id", (req, res, ctx) => {
     const token = req.headers.get("Authorization");
     if (!token) return res(ctx.status(401));
     const { id } = req.params;
     return res(ctx.json(Logger.filter((l) => l.candidateId === id)));
   }),
+  
   rest.post("/api/candidate/comment/:id", (req, res, ctx) => {
     const token = req.headers.get("Authorization");
     if (!token) return res(ctx.status(401));

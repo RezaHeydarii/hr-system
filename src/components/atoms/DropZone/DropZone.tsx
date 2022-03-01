@@ -20,7 +20,10 @@ export const DropZone = (props: Props) => {
     },
     [onChange]
   );
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    multiple: false,
+  });
 
   if (selectedFile) {
     return (
@@ -45,11 +48,11 @@ export const DropZone = (props: Props) => {
         <input {...getInputProps()} />
         {isDragActive ? (
           <div className="bg-greys-6 flex flex-col justify-center items-center py-8 rounded-lg border border-dashed border-greys-5">
-            <p className="font-bold">Drop files here to upload</p>
+            <p className="font-bold">Drop file here to upload</p>
           </div>
         ) : (
           <div className="bg-greys-6 flex flex-col justify-center items-center py-8 rounded-lg border border-dashed border-greys-5">
-            <p className="font-bold">Drag files here to upload</p>
+            <p className="font-bold">Drag file here to upload</p>
             <p className="text-greys-3 py-4">Or</p>
             <Button color="secondary">CHOOSE FILE TO UPLOAD</Button>
           </div>

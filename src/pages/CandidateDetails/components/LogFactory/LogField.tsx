@@ -9,10 +9,12 @@ interface Props {
 
 export const LogField = ({ filedName, value }: Props) => {
   switch (filedName) {
+    case "cv":
+      return <span></span>;
     case "status":
       return (
         <span>
-          <div className='inline-flex items-center font-bold'>
+          <div className="inline-flex items-center font-bold">
             <div
               className={[
                 "w-[12px] h-[12px] rounded mr-1",

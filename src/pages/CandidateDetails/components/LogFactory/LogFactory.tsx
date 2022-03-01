@@ -16,10 +16,19 @@ export const LogFactory = (props: Props) => {
     return (
       <div className="border-b border-b-greys-5 border-dashed pb-5 mb-5">
         <div className="text-greys-3 text-sm font-normal">
-          <span>{`${userName} changed ${log.editedField} from `}</span>
-          <LogField filedName={log.editedField as string} value={from} />
-          <span> to </span>
-          <LogField filedName={log.editedField as string} value={to} />
+          {log.editedField !== "cv" && (
+            <>
+              <span>{`${userName} changed ${log.editedField} from `}</span>
+              <LogField filedName={log.editedField as string} value={from} />
+              <span> to </span>
+              <LogField filedName={log.editedField as string} value={to} />
+            </>
+          )}
+          {log.editedField === "cv" && (
+            <>
+              <span>{`${userName} changed cv file.`}</span>
+            </>
+          )}
         </div>
         <p className="text-greys-3 text-sm font-medium">
           {moment(log.date).format("MMM DD, YYYY, hh:mm a")}

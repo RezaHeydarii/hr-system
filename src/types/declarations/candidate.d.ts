@@ -18,7 +18,11 @@ declare interface CandidateType {
   maxSalary: number;
   skills: string[];
   experienceYears: number;
-  cv?: string;
+  cv?: {
+    link?: string;
+    name?: string;
+    type?: string;
+  };
   status: CandidateStatus;
   createdAt: string;
   updatedAt: string;
