@@ -6,7 +6,7 @@ export const CANDIDATE_LOG_QK = "/api/candidate/logs";
 export const CANDIDATE_COMMENT_QK = "/api/candidate/comment";
 
 export const useCandidateList = () => {
-  const { data, isError, isLoading } = useQuery<CandidateType[]>(
+  const { data, isError, isLoading, isSuccess } = useQuery<CandidateType[]>(
     CANDIDATE_QK,
     async () => {
       const res = await axios.get(CANDIDATE_QK);
@@ -16,12 +16,12 @@ export const useCandidateList = () => {
 
   const list: CandidateType[] = data ? data : [];
 
-  return [list, { isLoading, isError }] as const;
+  return [list, { isLoading, isError, isSuccess }] as const;
 };
 
 export const useCandidate = (id?: string) => {
   const queryKey = `${CANDIDATE_QK}/${id}`;
-  const { data, isError, isLoading } = useQuery<CandidateType>(
+  const { data, isError, isLoading, isSuccess } = useQuery<CandidateType>(
     queryKey,
     async () => {
       const res = await axios.get(queryKey);
@@ -32,12 +32,12 @@ export const useCandidate = (id?: string) => {
     }
   );
 
-  return [data, { isLoading, isError }] as const;
+  return [data, { isLoading, isError, isSuccess }] as const;
 };
 
 export const useCandidateLogs = (id?: string) => {
   const queryKey = `${CANDIDATE_LOG_QK}/${id}`;
-  const { data, isError, isLoading } = useQuery<CandidateLogType[]>(
+  const { data, isError, isLoading, isSuccess } = useQuery<CandidateLogType[]>(
     queryKey,
     async () => {
       const res = await axios.get(queryKey);
@@ -48,7 +48,7 @@ export const useCandidateLogs = (id?: string) => {
     }
   );
 
-  return [data || [], { isLoading, isError }] as const;
+  return [data || [], { isLoading, isError, isSuccess }] as const;
 };
 
 export interface CandidatePatchFnProps {
@@ -62,9 +62,9 @@ export const usePatchCandidate = () => {
     return data;
   };
 
-  const { mutate, isLoading, isError } = useMutation(requestFn);
+  const { mutate, isLoading, isError, isSuccess } = useMutation(requestFn);
 
-  return [mutate, { isLoading, isError }] as const;
+  return [mutate, { isLoading, isError, isSuccess }] as const;
 };
 
 export interface CommentFnProps {
@@ -81,7 +81,7 @@ export const usePostComment = () => {
     return data;
   };
 
-  const { mutate, isLoading, isError } = useMutation(requestFn);
+  const { mutate, isLoading, isError, isSuccess } = useMutation(requestFn);
 
-  return [mutate, { isLoading, isError }] as const;
+  return [mutate, { isLoading, isError, isSuccess }] as const;
 };

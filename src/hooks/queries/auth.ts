@@ -19,9 +19,9 @@ export const useLogin = () => {
 export const useProfile = () => {
   const requestFn = async () => axios.get("/api/user");
 
-  const { data, isError, isLoading } = useQuery("user", requestFn, {
+  const { data, isError, isLoading, isSuccess } = useQuery("user", requestFn, {
     retry: false,
   });
 
-  return [data, { isError, isLoading }] as const;
+  return [data, { isError, isLoading, isSuccess }] as const;
 };
