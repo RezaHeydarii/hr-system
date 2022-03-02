@@ -28,6 +28,7 @@ export const StatusSelector = (props: Props) => {
   return (
     <div className={className}>
       <Button
+        id='statusSelector'
         className={cls(
           valueProps?.bgClassName,
           "rounded-xl flex items-center justify-between h-[38px]"
@@ -62,7 +63,7 @@ export const StatusSelector = (props: Props) => {
         {statusPairs.map((status) => {
           const [s, prop] = status;
           return (
-            <MenuItem onClick={() => handleClose(s)}>
+            <MenuItem id={s} onClick={() => handleClose(s)}>
               <p>{prop.name}</p>
             </MenuItem>
           );

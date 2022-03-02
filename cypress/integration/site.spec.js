@@ -16,12 +16,21 @@ describe("my first test", () => {
     cy.get('.MuiDataGrid-row').should('have.length.greaterThan',0);
     cy.get('.MuiDataGrid-row[data-id=1]').click();
     cy.url().should('equal','http://localhost:3000/1');
+
     cy.get('#fullName #editBtn').click();
     cy.get('#fullName input').clear().type('ReZa Heydari');
     cy.get('#fullName #confirmBtn').click();
+    cy.get('#fullName p').should('have.text','ReZa Heydari');
+
     cy.get('#email #editBtn').click();
     cy.get('#email input').clear().type('r.heydarii98@gmail.com');
     cy.get('#email #confirmBtn').click();
+    cy.get('#email p').should('have.text','r.heydarii98@gmail.com');
+
+    cy.get('#statusSelector').click();
+    cy.get('#Initial').click();
+    cy.get('#statusSelector p:first').should('have.text','initial');
+    
     cy.get('button[id=logout]').click();
     cy.get('input[id=username]').should('exist');
   });
