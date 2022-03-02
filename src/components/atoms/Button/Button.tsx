@@ -17,6 +17,7 @@ export interface ButtonProps
   freeHeight?: boolean;
   isLoading?: boolean;
   noPadding?: boolean;
+  id?: string;
 }
 
 export const Button = (props: ButtonProps) => {
@@ -33,6 +34,7 @@ export const Button = (props: ButtonProps) => {
     isLoading,
     noPadding,
     type,
+    id,
   } = props;
   const btnHeight = freeHeight ? "!h-auto" : "!h-[48px]";
   const btnCommon = "!text-sm";
@@ -50,6 +52,7 @@ export const Button = (props: ButtonProps) => {
   return (
     <div className={className}>
       <MuiButton
+        id={id}
         type={type}
         fullWidth={fullWidth}
         onClick={onClick}

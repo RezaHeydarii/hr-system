@@ -17,12 +17,14 @@ export const CandidateDetailsForm = (props: Props) => {
   return (
     <div className={className}>
       <EditableField
+        containerId="fullName"
         value={candidateDetails.name}
         label="Full name"
         className={"mb-5"}
         onSaveChange={(name) => onPatchCandidate({ name })}
       />
       <EditableField
+        containerId="email"
         value={candidateDetails.email}
         label="Email"
         className={"mb-5"}
@@ -158,7 +160,12 @@ export const CandidateDetailsForm = (props: Props) => {
         renderValue={(val) => {
           if (!val) return <p>no file selected</p>;
           return (
-            <a className='border-b-iv border-b-2' href={val.link} target="_blank" rel="noreferrer">
+            <a
+              className="border-b-iv border-b-2"
+              href={val.link}
+              target="_blank"
+              rel="noreferrer"
+            >
               {val.name}
             </a>
           );

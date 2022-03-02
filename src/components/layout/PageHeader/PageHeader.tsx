@@ -18,7 +18,7 @@ export const PageHeader = (props: Props) => {
           <h3 className="font-bold">{text}</h3>
         </div>
         {isAuth && (
-          <Button variant="text" onClick={onLogout}>
+          <Button id="logout" variant="text" onClick={onLogout}>
             Logout
           </Button>
         )}

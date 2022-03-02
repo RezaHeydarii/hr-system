@@ -11,6 +11,7 @@ interface Props<T = string> {
     setter: (val: T) => void
   ) => React.ReactNode;
   label?: string;
+  containerId?: string;
 }
 
 export function EditableField<ValueType = string>(props: Props<ValueType>) {
@@ -22,6 +23,7 @@ export function EditableField<ValueType = string>(props: Props<ValueType>) {
     renderValue,
     renderEditInput,
     label,
+    containerId,
   } = props;
 
   const [innerValue, setInnerValue] =
@@ -48,6 +50,7 @@ export function EditableField<ValueType = string>(props: Props<ValueType>) {
       <div className={"flex items-center"}>
         {renderValue ? renderValue(innerValue) : <p>{innerValue}</p>}
         <Button
+          id="editBtn"
           noPadding
           variant="text"
           freeHeight
@@ -74,6 +77,7 @@ export function EditableField<ValueType = string>(props: Props<ValueType>) {
         )}
         {renderEditInput && renderEditInput(innerValue!, setInnerValue)}
         <Button
+          id="closeBtn"
           noPadding
           variant="text"
           freeHeight
@@ -85,6 +89,7 @@ export function EditableField<ValueType = string>(props: Props<ValueType>) {
           </div>
         </Button>
         <Button
+          id="confirmBtn"
           noPadding
           variant="text"
           freeHeight
@@ -102,7 +107,7 @@ export function EditableField<ValueType = string>(props: Props<ValueType>) {
   }, [value]);
 
   return (
-    <div className={className}>
+    <div id={containerId} className={className}>
       {label && <span className="text-sm mb-2.5 font-bold">{label}</span>}
       {!onEditMode ? renderNormal() : renderEditMode()}
     </div>
